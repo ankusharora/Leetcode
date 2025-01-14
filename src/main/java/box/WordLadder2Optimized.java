@@ -3,6 +3,23 @@ package box;
 
 import java.util.*;
 
+/**
+ *
+ *
+ * O(N⋅L⋅26)=O(N⋅L)
+ * where:
+ *
+ * 𝑁
+ * N is the number of words in the word list.
+ * 𝐿
+ * L is the average length of the words.
+ * The constant factor
+ * 26
+ * 26 (alphabet size) is negligible.
+ *
+ *
+ * Queue + visitedset + wordSet + path storage == o( n * l)
+ */
 public class WordLadder2Optimized {
 
     public List<String> findShortestLadder(String beginWord, String endWord, List<String> wordList) {

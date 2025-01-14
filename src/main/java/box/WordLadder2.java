@@ -2,6 +2,21 @@ package box;
 
 import java.util.*;
 
+
+/**
+ *
+ * TIME  BFS - O(N⋅L⋅26)=O(N⋅L)
+ * BACK TRACK - O(P⋅k)   P be the number of shortest paths
+ * Total O(N⋅L+P⋅k)
+ *
+ *
+ *
+ * SPACE:
+ *
+ * O(N⋅L) BFS
+ * O(P⋅k⋅L)
+ *
+ */
 public class WordLadder2 {
 
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
