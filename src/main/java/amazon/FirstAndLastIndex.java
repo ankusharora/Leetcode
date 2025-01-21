@@ -1,5 +1,12 @@
 package amazon;
 
+/**
+ * Use binary search to find the first and last occurrence of the target.
+ * For the first index, move end = mid - 1 when nums[mid] >= target.
+ * For the last index, move start = mid + 1 when nums[mid] <= target.
+ * Update index whenever nums[mid] == target.
+ * Return [-1, -1] if the target is not found; otherwise, return [first, last].
+ */
 public class FirstAndLastIndex {
     public int[] searchRange(int[] nums, int target) {
         int[] result = new int[2];
