@@ -1,4 +1,4 @@
-package meta;
+package amazon.arrays;
 
 class NextPermutation {
     public void nextPermutation(int[] nums) {

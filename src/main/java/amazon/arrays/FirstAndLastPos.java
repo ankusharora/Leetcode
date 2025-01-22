@@ -1,4 +1,4 @@
-package meta;
+package amazon.arrays;
 
 public class FirstAndLastPos {
 

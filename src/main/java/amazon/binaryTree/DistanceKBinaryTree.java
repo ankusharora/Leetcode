@@ -1,10 +1,26 @@
 package amazon.binaryTree;
 
-import amazon.TreeNode;
-
 import java.util.*;
 
+/**
+ *
+ * Build Parent Map: Create a map to store the parent of each node for upward traversal during the search.
+ * Depth-First Search (DFS): Start DFS from the target node to find nodes at distance k.
+ * Traverse All Directions: Explore left, right, and the parent node to account for all possible paths.
+ * Track Visited Nodes: Use a visited set to prevent revisiting nodes and infinite loops.
+ * Add to Result: If k == 0, add the current node's value to the result list.
+ *
+ */
 public class DistanceKBinaryTree {
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
 
     Map<TreeNode, TreeNode> parentMap = new HashMap<>();
     List<Integer> returnList = new ArrayList<>();
