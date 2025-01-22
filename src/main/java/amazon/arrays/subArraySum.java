@@ -1,4 +1,4 @@
-package meta;
+package amazon.arrays;
 
 import java.util.*;
 

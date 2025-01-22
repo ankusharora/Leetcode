@@ -1,4 +1,4 @@
-package amazon;
+package amazon.Matrix2D;
 
 public class RotateImage {
     public void rotate(int[][] matrix) {

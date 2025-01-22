@@ -1,4 +1,4 @@
-package amazon;
+package amazon.arrays;
 
 /**
  * Use binary search to find the first and last occurrence of the target.
