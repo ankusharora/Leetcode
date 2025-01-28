@@ -20,19 +20,21 @@ public class OptimalPartition {
 
     public int partitionString(String s) {
         int ans = 1;
-        Set<Character> set = new HashSet<>();
+        Set<Character> set = new HashSet<>();   // boolean[] seen = new boolean[26] (optimal faster approach )
 
         for (char c: s.toCharArray()){
-            if (set.contains(c)){
+            if (set.contains(c)){               // seen[ch - 'a']
                 ans++;
-                set.clear();
+                set.clear();                    // seen  = new boolean[26]
             }
 
-            set.add(c);
+            set.add(c);                         // seen[ch - 'a'] = true
 
         }
 
         return ans;
     }
+
+
 
 }

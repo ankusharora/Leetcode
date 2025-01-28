@@ -1,6 +1,6 @@
 package Docusign;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -95,4 +95,43 @@ public class CourseSchedule {
         return output;
     }
 
+    public boolean canFinishDFS(int numCourses, int[][] prerequisites) {
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        for(int i=0; i<numCourses; i++) {
+            graph.put(i, new ArrayList<>());
+        }
+
+        for(int[] prerequisite : prerequisites) {
+            graph.get(prerequisite[0]).add(prerequisite[1]);
+        }
+
+        int[] visitState = new int[numCourses];
+        for(int i=0; i<numCourses; i++) {
+            if(dfs(i, visitState, graph)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean dfs(int node, int[] visitState, Map<Integer, List<Integer>> graph) {
+        if(visitState[node] == 1) {
+            return true;
+        }
+
+        if(visitState[node] == 2) {
+            return false;
+        }
+
+        visitState[node] = 1;
+
+        for(int nei : graph.get(node)) {
+            if(dfs(nei, visitState, graph)) {
+                return  true;
+            }
+        }
+
+        visitState[node] = 2;
+        return false;
+    }
 }
