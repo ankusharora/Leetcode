@@ -71,15 +71,15 @@ public class FileReportGenerator {
         // Add files to the system
         report.addFile(new File("file1.txt", 100, null)); // No collection
         report.addFile(new File("file2.txt", 200, "collection1"));
-        report.addFile(new File("file3.txt", 200, "collection1"));
-        report.addFile(new File("file4.txt", 300, "collection2"));
+        report.addFile(new File("file3.txt", 300, "collection1"));
+        report.addFile(new File("file4.txt", 800, "collection2"));
         report.addFile(new File("file5.txt", 10, null)); // No collection
 
         // Get the total size of all files
         System.out.println("Total size of all files: " + report.getTotalSize());
 
         // Get the top 2 collections by size
-        List<String> topCollections = report.getTopNCollections(2);
+        List<String> topCollections = report.getTopNCollections(1);
         System.out.println("Top 2 collections: " + topCollections);
     }
 
@@ -114,19 +114,30 @@ public class FileReportGenerator {
 
     // Get the top N collections by size
     public List<String> getTopNCollections(int N) {
-        // Create a max-heap (PriorityQueue) based on total size in descending order
-        PriorityQueue<Collection> maxHeap = new PriorityQueue<>(
-                (a, b) -> b.getTotalSize() - a.getTotalSize()
+        // Create a min-heap (PriorityQueue) based on total size in ascending order
+        PriorityQueue<Collection> minHeap = new PriorityQueue<>(
+                (a, b) -> a.getTotalSize() - b.getTotalSize()
         );
 
-        // Add all collections to the max-heap
-        maxHeap.addAll(collections.values());
+        // Iterate through all collections
+        for (Collection collection : collections.values()) {
+            // Add the collection to the min-heap
+            minHeap.offer(collection);
 
-        // Extract the top N collections
-        List<String> topNCollections = new ArrayList<>();
-        for (int i = 0; i < N && !maxHeap.isEmpty(); i++) {
-            topNCollections.add(maxHeap.poll().getName());
+            // If the heap size exceeds N, remove the smallest element
+            if (minHeap.size() > N) {
+                minHeap.poll();
+            }
         }
+
+        // Extract the top N collections from the min-heap
+        List<String> topNCollections = new ArrayList<>();
+        while (!minHeap.isEmpty()) {
+            topNCollections.add(minHeap.poll().getName());
+        }
+
+        // Reverse the list to get the top N collections in descending order
+        Collections.reverse(topNCollections);
 
         return topNCollections;
     }
