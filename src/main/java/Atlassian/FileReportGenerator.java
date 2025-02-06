@@ -1,9 +1,6 @@
 package Atlassian;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * CopyOnWriteArrayList is used for the files list to ensure thread safety.
@@ -117,17 +114,22 @@ public class FileReportGenerator {
 
     // Get the top N collections by size
     public List<String> getTopNCollections(int N) {
-        // Create a list of collections sorted by total size in descending order
-        List<Collection> sortedCollections = new ArrayList<>(collections.values());
-        sortedCollections.sort((a, b) -> b.getTotalSize() - a.getTotalSize());
+        // Create a max-heap (PriorityQueue) based on total size in descending order
+        PriorityQueue<Collection> maxHeap = new PriorityQueue<>(
+                (a, b) -> b.getTotalSize() - a.getTotalSize()
+        );
+
+        // Add all collections to the max-heap
+        maxHeap.addAll(collections.values());
 
         // Extract the top N collections
         List<String> topNCollections = new ArrayList<>();
-        for (int i = 0; i < Math.min(N, sortedCollections.size()); i++) {
-            topNCollections.add(sortedCollections.get(i).getName());
+        for (int i = 0; i < N && !maxHeap.isEmpty(); i++) {
+            topNCollections.add(maxHeap.poll().getName());
         }
 
         return topNCollections;
     }
+
 }
 
