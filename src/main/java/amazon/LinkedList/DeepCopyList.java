@@ -1,4 +1,4 @@
-//package Docusign;
+//package amazon.LinkedList;
 //
 //public class DeepCopyList {
 //
