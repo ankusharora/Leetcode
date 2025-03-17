@@ -34,7 +34,6 @@ public class GetClosestDashMart {
         List<List<Integer>> locationList = Arrays.asList(Arrays.asList(2,2), Arrays.asList(4,0), Arrays.asList(0,4), Arrays.asList(2,6));
         List<Integer> answer = new ArrayList<>();
         for (List<Integer> location : locationList) {
-            System.out.println("Test " + locationBoard[location.get(0)][location.get(1)]);
             answer.add(locationBoard[location.get(0)][location.get(1)] - 'D');
         }
         System.out.println(answer);
