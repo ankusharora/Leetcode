@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class DinosaurSpeedCalculator {
     public static void main(String[] args) {
+
         if (args.length != 2) {
             System.err.println("Usage: java DinosaurSpeedCalculator <dataset1.csv> <dataset2.csv>");
             System.exit(1);
