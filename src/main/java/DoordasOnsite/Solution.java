@@ -49,6 +49,17 @@ class DasherPayoutCalculator {
 
         for (Delivery delivery : deliveries) {
             if (previousTimestamp != null) {
+
+                /**
+                 * For prorated minutes:
+                 *
+                 * double secondsElapsed = Duration.between(previousTimestamp, delivery.timestamp).toSeconds();
+                 * double minutesElapsed = secondsElapsed / 60.0; // Fractional minutes
+                 * if (minutesElapsed > 0 && activeDeliveries > 0) {
+                 *     totalPayout += minutesElapsed * BASE_PAY_PER_MINUTE * activeDeliveries;
+                 * }
+                 */
+
                 long minutesElapsed = Duration.between(previousTimestamp, delivery.timestamp).toMinutes();
                 if (minutesElapsed > 0 && activeDeliveries > 0) {
                     totalPayout += minutesElapsed * BASE_PAY_PER_MINUTE * activeDeliveries;
